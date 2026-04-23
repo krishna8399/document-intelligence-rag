@@ -1,0 +1,35 @@
+# Default RAG Configuration (OpenAI)
+llm:
+  provider: "openai"
+  model: "gpt-4o-mini"
+  temperature: 0.1            # low = more factual, less creative
+  max_tokens: 1024
+
+embedding:
+  model: "all-MiniLM-L6-v2"   # local sentence-transformer (no API needed)
+  dimension: 384
+
+chunking:
+  strategy: "recursive"        # recursive character text splitter
+  chunk_size: 500              # tokens per chunk
+  chunk_overlap: 50            # overlap between chunks
+  separators: ["\n\n", "\n", ". ", " ", ""]
+
+vector_store:
+  provider: "chromadb"
+  persist_directory: "data/chroma_db"
+  collection_name: "documents"
+
+retrieval:
+  top_k: 5                    # number of chunks to retrieve
+  hybrid:
+    enabled: true
+    semantic_weight: 0.7       # 70% semantic, 30% BM25
+    bm25_weight: 0.3
+
+generation:
+  system_prompt: |
+    You are a helpful assistant that answers questions based on the provided context.
+    Always cite your sources by referencing the document name and chunk number.
+    If the context doesn't contain enough information to answer, say so clearly.
+    Do not make up information that isn't in the context.

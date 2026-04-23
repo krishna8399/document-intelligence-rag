@@ -1,0 +1,40 @@
+# Local RAG Configuration (no API key needed)
+# Uses Ollama for LLM and sentence-transformers for embeddings
+# Install Ollama: https://ollama.ai/download
+# Then: ollama pull llama3.1:8b
+
+llm:
+  provider: "ollama"
+  model: "llama3.1:8b"
+  base_url: "http://localhost:11434"
+  temperature: 0.1
+  max_tokens: 1024
+
+embedding:
+  model: "all-MiniLM-L6-v2"
+  dimension: 384
+
+chunking:
+  strategy: "recursive"
+  chunk_size: 500
+  chunk_overlap: 50
+  separators: ["\n\n", "\n", ". ", " ", ""]
+
+vector_store:
+  provider: "chromadb"
+  persist_directory: "data/chroma_db"
+  collection_name: "documents"
+
+retrieval:
+  top_k: 5
+  hybrid:
+    enabled: true
+    semantic_weight: 0.7
+    bm25_weight: 0.3
+
+generation:
+  system_prompt: |
+    You are a helpful assistant that answers questions based on the provided context.
+    Always cite your sources by referencing the document name and chunk number.
+    If the context doesn't contain enough information to answer, say so clearly.
+    Do not make up information that isn't in the context.

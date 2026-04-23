@@ -1,0 +1,33 @@
+# Data & model artefacts
+data/
+chroma_db/
+*.pt
+*.pth
+mlruns/
+
+# Python
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Secrets
+.env
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs / temp
+*.log
+tmp/
