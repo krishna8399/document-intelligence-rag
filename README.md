@@ -12,19 +12,17 @@ Upload PDFs, DOCX, or TXT files and ask natural language questions. Answers are 
 
 ## Demo
 
-> **Chat interface** — upload documents from the sidebar, then ask questions in the chat window. Each answer shows the source document and chunk number.
+![Chat interface with multi-document Q&A](assets/screenshots/demo_ss.png)
 
-![Chat interface — document upload and Q&A with source citations](assets/screenshots/chat_interface.png)
+*Chat interface with multi-document Q&A — three documents (117 chunks) indexed from the sidebar, then asked "tell me whats in this document?" The assistant returns a structured summary drawn from all uploaded files with chunk-level attribution.*
 
-> **Source citations** — every answer expands to show which chunks were used, their relevance scores, and the raw text.
+---
 
-![Source citation panel showing chunk text and hybrid scores](assets/screenshots/source_citations.png)
+**What's visible in the screenshot:**
 
-> **FastAPI docs** — interactive API at `/docs` for programmatic access.
-
-![FastAPI interactive docs at /docs](assets/screenshots/api_docs.png)
-
-*To add your own screenshots: run the app, take screenshots, and save them to `assets/screenshots/` with the filenames above.*
+- **Chat interface with multi-document Q&A** — the main panel shows an answer synthesised across multiple source documents (`ai_healthcare_report.txt`, `machine_learning_guide.txt`), each claim tagged to a specific chunk
+- **Source citations with chunk references** — the collapsible `▶ Sources` panel beneath the answer lists every chunk used, its source filename, chunk ID, and hybrid retrieval score
+- **Document upload sidebar** — left panel shows the file uploader (PDF, DOCX, TXT), live stats (117 chunks indexed, `llama3.1:8b`, `all-MiniLM-L6-v2`), and the Clear All Documents control
 
 ---
 
